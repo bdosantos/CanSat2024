@@ -36,14 +36,14 @@
         <a-assets>
             <!-- Define el vídeo de fondo -->
             <video id="video" autoplay loop="true" crossorigin="anonymous" muted="true" playsinline="true" width="1280" height="720">
-                <source src="tu_video.mp4" type="video/mp4">
+                <source src="./brunete2.mp4" type="video/mp4">
             </video>
-        </a-assets>
+    
         <!-- Primer objeto -->
         <a-entity id="objeto1" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 0 10" rotation="0 0 0"></a-entity>
-
-        <!-- Segundo objeto -->
-        <a-entity id="objeto2" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="-1 0 0" rotation="0 0 0"></a-entity>
-    
-</body>
+         <!-- Cámara para la primera escena -->
+        <a-entity camera position="0 1.6 0"></a-entity>
+            
+    </a-scene>
+        
 </html>
