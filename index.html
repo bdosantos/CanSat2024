@@ -39,12 +39,15 @@
                 autoplay: true, // Inicia automáticamente la animación
                 loop: false      // No se repite la animación
             });
+
+            // Detener la animación cuando llegue al final
+            objeto.addEventListener('animationcomplete', function () {
+                objeto.removeAttribute('animation');
+                objeto.removeAttribute('animation__scale');
+            });
             
         </script>
     </a-scene>
-
-
-
 
 </body>
 </html>
