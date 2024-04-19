@@ -35,8 +35,12 @@
         </a-scene>
     
  <a-scene>
-       <!-- vídeo de fondo-->
-        
+        <a-assets>
+            <!-- Define el vídeo de fondo -->
+            <video id="video" autoplay loop="true" crossorigin="anonymous" muted="true" playsinline="true" width="1280" height="720">
+                <source src="tu_video.mp4" type="video/mp4">
+            </video>
+        </a-assets>
         <!-- Primer objeto -->
         <a-entity id="objeto1" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 0 10" rotation="0 0 0"></a-entity>
 
