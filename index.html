@@ -9,11 +9,30 @@
 <body>
 
     <a-scene>
+       <!-- Imagen de fondo -->
+        <a-sky src="Brunete.png"></a-sky>
+        
+        <!-- Primer objeto -->
+        <a-entity id="objeto1" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 0 10" rotation="0 0 0"></a-entity>
 
-        <!-- Utiliza obj-model en lugar de obj-parte1 -->
-        <a-entity obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="-1 0 0" rotation="0 0 0"></a-entity>
-          
+        <!-- Segundo objeto -->
+        <a-entity id="objeto2" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="-1 0 0" rotation="0 0 0"></a-entity>
+
     </a-scene>
+
+    <!-- Script para la animación del primer objeto -->
+    <script>
+        // Obtener el objeto que se moverá
+        var objeto1 = document.querySelector('#objeto1');
+
+        // Animar el objeto para que se mueva hacia abajo
+        objeto1.setAttribute('animation', {
+            property: 'position',
+            to: '0 1 -10',  // Cambia la posición final según sea necesario
+            dur: 5000,      // Duración de la animación en milisegundos
+            easing: 'linear'// Tipo de interpolación (puedes cambiarlo si deseas otro efecto)
+        });
+    </script>
 
 </body>
 </html>
