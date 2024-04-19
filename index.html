@@ -51,7 +51,8 @@
     <!-- Segunda escena -->
     <a-scene id="escena2" visible="false">
         <!-- Vídeo de fondo -->
-        <a-entity geometry="primitive: sphere; radius: 1000;" material="src: #video; side: double;"></a-entity>
+       <video id="video" autoplay loop crossorigin="anonymous" muted playsinline>
+        <source src="brunete2.mp4" type="video/mp4">
         
         <!-- Segundo objeto -->
         <a-entity obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="-1 0 0" rotation="0 0 0">
