@@ -40,36 +40,9 @@
                 loop: false      // No se repite la animación
             });
             
-            // Cuando la animación termine, cambiar a la segunda escena
-            objeto.addEventListener('animationcomplete', function () {
-                document.querySelector('#escena1').setAttribute('visible', 'false');
-                document.querySelector('#escena2').setAttribute('visible', 'true');
-            });
         </script>
     </a-scene>
 
-    <!-- Segunda escena -->
-    <a-scene id="escena2" visible="false">
-        <!-- Vídeo de fondo -->
-       <video id="video" autoplay loop crossorigin="anonymous" muted playsinline>
-        <source src="brunete2.mp4" type="video/mp4">
-        
-        <!-- Segundo objeto -->
-        <a-entity obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="-1 0 0" rotation="0 0 0">
-            <!-- Script para permitir el acceso al interior del CanSat -->
-            <script>
-                var objeto = document.querySelector('[obj-model]');
-                
-                // Cambiar la posición de la cámara para entrar en el interior del CanSat al hacer clic en él
-                objeto.addEventListener('click', function () {
-                    document.querySelector('[camera]').setAttribute('position', '0 1.6 0');
-                });
-            </script>
-        </a-entity>
-        
-        <!-- Configuración de la cámara para la segunda escena -->
-        <a-entity camera position="0 1.6 0"></a-entity>
-    </a-scene>
 
 
 
