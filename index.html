@@ -3,40 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diseño 3D </title>
+    <title>Diseño 3D</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
 
     <!-- Primera escena -->
-    <a-scene>
+    <a-scene id="escena1">
         <!-- Imagen de fondo -->
         <a-sky src="Brunete.png"></a-sky>
         
         <!-- Primer objeto -->
-        <a-entity id="objeto1" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 10 -10" rotation="0 0 0">
-            <!-- Script para animar el objeto hacia abajo -->
-            <script>
-                // Obtener el objeto que se moverá
-                var objeto = document.querySelector('#objeto1');
+        <a-entity obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 10 -10" rotation="0 0 0"></a-entity>
 
-                // Animar el objeto para que se mueva hacia abajo
-                objeto.setAttribute('animation', {
-                    property: 'position',
-                    to: '0 1 -20',  // Cambia la posición final según sea necesario
-                    dur: 5000,      // Duración de la animación en milisegundos
-                    easing: 'linear',// Tipo de interpolación (puedes cambiarlo si deseas otro efecto)
-                    autoplay: true, // Inicia automáticamente la animación
-                    loop: false      // No se repite la animación
-                });
-                
-                // Cuando la animación termine, cambiar a la segunda escena
-                objeto.addEventListener('animationcomplete', function () {
-                    document.querySelector('#escena1').setAttribute('visible', 'false');
-                    document.querySelector('#escena2').setAttribute('visible', 'true');
-                });
-            </script>
-        </a-entity>
+        <!-- Script para animar el objeto hacia abajo y hacerlo más pequeño -->
+        <script>
+            // Obtener el objeto que se moverá
+            var objeto = document.querySelector('[obj-model]');
+
+            // Animar el objeto para que se mueva hacia abajo y se haga más pequeño
+            objeto.setAttribute('animation', {
+                property: 'position',
+                to: '0 1 -30',  // Posición final más baja
+                dur: 10000,     // Duración de la animación en milisegundos
+                easing: 'linear',// Tipo de interpolación (puedes cambiarlo si deseas otro efecto)
+                autoplay: true, // Inicia automáticamente la animación
+                loop: false      // No se repite la animación
+            });
+
+            objeto.setAttribute('animation__scale', {
+                property: 'scale',
+                to: '0.25 0.25 0.25',  // Tamaño final más pequeño
+                dur: 10000,     // Duración de la animación en milisegundos
+                easing: 'linear',// Tipo de interpolación (puedes cambiarlo si deseas otro efecto)
+                autoplay: true, // Inicia automáticamente la animación
+                loop: false      // No se repite la animación
+            });
+            
+            // Cuando la animación termine, cambiar a la segunda escena
+            objeto.addEventListener('animationcomplete', function () {
+                document.querySelector('#escena1').setAttribute('visible', 'false');
+                document.querySelector('#escena2').setAttribute('visible', 'true');
+            });
+        </script>
     </a-scene>
 
     <!-- Segunda escena -->
@@ -45,10 +54,10 @@
         <a-entity geometry="primitive: sphere; radius: 1000;" material="src: #video; side: double;"></a-entity>
         
         <!-- Segundo objeto -->
-        <a-entity id="objeto2" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="-1 0 0" rotation="0 0 0">
+        <a-entity obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="-1 0 0" rotation="0 0 0">
             <!-- Script para permitir el acceso al interior del CanSat -->
             <script>
-                var objeto = document.querySelector('#objeto2');
+                var objeto = document.querySelector('[obj-model]');
                 
                 // Cambiar la posición de la cámara para entrar en el interior del CanSat al hacer clic en él
                 objeto.addEventListener('click', function () {
