@@ -14,7 +14,7 @@
         <a-sky src="./Brunete2.png"></a-sky>
         
         <!-- Primer objeto -->
-        <a-entity id="objeto" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 0 0" scale="0.2 0.2 0.2" rotation="0 0 0">
+        <a-entity id="objeto" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 -1 -5" scale="0.1 0.1 0.1" rotation="0 0 0">
             <!-- Script para permitir el acceso al interior del objeto -->
             <script>
                 var objeto = document.querySelector('#objeto');
@@ -36,11 +36,12 @@
         </a-entity>
 
         <!-- Cámara con controles de vista -->
-        <a-entity camera look-controls></a-entity>
+        <a-entity camera look-controls position="0 1.6 0"></a-entity>
     </a-scene>
 
 </body>
 </html>
+
 
 
         </script>
