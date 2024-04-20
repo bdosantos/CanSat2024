@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diseño 3D</title>
+    <title>MalsaSat</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
@@ -11,45 +11,32 @@
     <!-- Primera escena -->
     <a-scene id="escena1">
         <!-- Imagen de fondo -->
-        <a-sky src="Brunete.png"></a-sky>
+        <a-sky src="./Brunete2.png"></a-sky>
         
         <!-- Primer objeto -->
-        <a-entity obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 10 -10" rotation="90 0 0"></a-entity>
+        <a-entity id="objeto" obj-model="obj:./malasat.obj; mtl:./malasat.mtl" position="0 0 0" scale="0.2 0.2 0.2" rotation="0 0 0">
+            <!-- Script para permitir el acceso al interior del objeto -->
+            <script>
+                var objeto = document.querySelector('#objeto');
+                var camera = document.querySelector('[camera]');
 
-        <!-- Cámara -->
-        <a-entity camera position="0 5 0"></a-entity>
+                // Actualizar la posición de la cámara para seguir al objeto mientras desciende
+                function actualizarCamara() {
+                    var posicionObjeto = objeto.getAttribute('position');
+                    camera.setAttribute('position', {
+                        x: posicionObjeto.x,
+                        y: posicionObjeto.y + 2, // Coloca la cámara un poco más arriba del objeto
+                        z: posicionObjeto.z + 5  // Coloca la cámara detrás del objeto
+                    });
+                }
 
-        <!-- Script para animar el objeto hacia abajo y hacerlo más pequeño -->
-        <script>
-            // Obtener el objeto que se moverá
-            var objeto = document.querySelector('[obj-model]');
+                // Llamar a la función de actualización de la cámara en bucle
+                setInterval(actualizarCamara, 100); // Actualizar cada 100 milisegundos
+            </script>
+        </a-entity>
 
-            // Animar el objeto para que se mueva hacia abajo y se haga más pequeño
-            objeto.setAttribute('animation', {
-                property: 'position',
-                to: '0 1 -30',  // Posición final más baja
-                dur: 15000,     // Duración de la animación en milisegundos
-                easing: 'linear',// Tipo de interpolación (puedes cambiarlo si deseas otro efecto)
-                autoplay: true, // Inicia automáticamente la animación
-                loop: false      // No se repite la animación
-            });
-
-            objeto.setAttribute('animation__scale', {
-                property: 'scale',
-                to: '0.001 0.001 0.001',  // Tamaño final más pequeño
-                dur: 15000,     // Duración de la animación en milisegundos
-                easing: 'linear',// Tipo de interpolación (puedes cambiarlo si deseas otro efecto)
-                autoplay: true, // Inicia automáticamente la animación
-                loop: false      // No se repite la animación
-            });
-
-            // Detener la animación cuando llegue al final
-            objeto.addEventListener('animationcomplete', function () {
-                objeto.removeAttribute('animation');
-                objeto.removeAttribute('animation__scale');
-            });
-            
-        </script>
+        <!-- Cámara con controles de vista -->
+        <a-entity camera look-controls></a-entity>
     </a-scene>
 
 </body>
